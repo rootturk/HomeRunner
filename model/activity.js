@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const activitySchema = new mongoose.Schema({
     username: {type:String, default:null},
     activity_type:{type:Number, default:null},
+    description:{type:String},
     ip_address: {type:String, default:null},
     created: { type: Date, default: Date.now() }
 })
