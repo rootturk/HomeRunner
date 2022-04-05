@@ -12,7 +12,6 @@ services:
     volumes:
       - mongodb_data_container:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
-    command: ['--auth']
     networks:
       - common
   homerunner:
