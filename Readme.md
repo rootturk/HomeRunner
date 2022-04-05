@@ -45,3 +45,7 @@ or serilog+es for dotnet)
 -  (+) Users can block any sender’s username to stop receiving messages.
 -  (+) Users can view their own activity logs (ie. successful or invalid logins)
 -  Messaging can be real-time or can follow event-driven architecture.
+
+## Future
+- all endpoints will be placed under controller files. (userController, messageController) etc.
+- integration test

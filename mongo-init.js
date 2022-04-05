@@ -6,8 +6,8 @@ db.auth("root", "root123");
 db = db.getSiblingDB('homerunner');
 
 db.createUser({
-    user: 'home',
-    pwd: 'takoz',
+    user: 'homerunner',
+    pwd: 'homerunner123',
     roles: [
       {
         role: 'dbOwner',
