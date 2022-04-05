@@ -8,4 +8,5 @@ COPY . .
 EXPOSE 4002
 RUN chown -R node /usr/src/app
 USER node
-CMD ["node", "main.js"]
+
+CMD ["node", "server.js"] 

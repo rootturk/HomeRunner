@@ -1,4 +1,5 @@
 let chai = require('chai');
+let app = require('../server').app;
 let chaiHttp = require('chai-http');
 let should = chai.should();
 
@@ -11,14 +12,14 @@ describe('New User register', () => {
     describe('Succeeded User Register', () => {
         it('it should POST', (done) => {
             let user = {
-                "username": "robhotturk",
-                "name": "AKIN ABDULLAHOGLU",
+                "email": "akin@homerunner.com",
+                "username":"homerun",
                 "password": "dockerize",
-                "email": "akin7hh2@akinabdullahoglu.com",
-                "age": 24
+                "name": "AKIN ABDULLAHOGLU",
+                "age": 29
             }
-            chai.request("http://localhost:4002")
-                .post('/user/register')
+            chai.request(app)
+                .post('/api/user/register')
                 .send(user)
                 .end((err, res) => {
                     res.should.have.status(201)
@@ -26,56 +27,29 @@ describe('New User register', () => {
                 });
         });
     });
+});
 
-    /*
-    * Test the User api
-    */
-    describe('Already User Register Scenerio', () => {
-        it('it should Already Created', (done) => {
-            let user = {
-                "name": "AKIN ABDULLAHOGLU",
-                "password": "dockerize",
-                "age": 24
-            }
-            chai.request("http://localhost:4002")
-                .post('/user/register')
-                .send(user)
-                .end((err, res) => {
-                    res.body.should.be.a('object');
-                    res.should.have.status(409)
-                    done();
-                });
-        });
-    });
-
+describe('New User register', () => {
     /*
     * Test the User api
     */
     describe('/POST user/login', () => {
         it('it should LOGIN, GET TOKEN', (done) => {
             let user = {
-                "email": "akin@akinabdullahoglu.com",
+                "email": "akin@homerunner.com",
                 "password": "dockerize",
             }
-            let token = ''
-            chai.request("http://localhost:4002")
-                .post('/user/login')
+       
+            chai.request(app)
+                .post('/api/user/login')
                 .send(user)
                 .end((err, res) => {
+                
                     res.body.should.be.a('object');
                     res.body.should.have.property('data');
                     res.body.should.have.property('code');
                     res.should.have.status(200)
-                    token = res.body.data
-                    console.log(token)
-                    chai.request('http://localhost:4002')
-                    .get('/welcome')
-                    .set("x-access-token", token)
-                    .end((err, res)=> {
-                        console.log(res)
-                        res.should.have.status(200)  
-                        done();
-                    });
+                    done()
                 })
         });
     });
@@ -83,15 +57,15 @@ describe('New User register', () => {
     /*
     * Test the User api
     */
-        describe('api/message', () => {
-            it('it should take messages if token is past!', (done) => {
+        describe('api/user/activity', () => {
+            it('it should take activities if token is past!', (done) => {
                 let user = {
-                    "email": "akin@akinabdullahoglu.com",
+                    "email": "akin@homerunner.com",
                     "password": "dockerize",
                 }
                 let token = ''
-                chai.request("http://localhost:4002")
-                    .post('/user/login')
+                chai.request(app)
+                    .post('/api/user/login')
                     .send(user)
                     .end((err, res) => {
                         res.body.should.be.a('object');
@@ -99,16 +73,71 @@ describe('New User register', () => {
                         res.body.should.have.property('code');
                         res.should.have.status(200)
                         token = res.body.data
-                        console.log(token)
-                        chai.request('http://localhost:4002')
-                        .get('/api/message')
+                
+                        chai.request(app)
+                        .get('/api/user/activity')
                         .set("x-access-token", token)
                         .end((err, res)=> {
-                            console.log(res)
+                
                             res.should.have.status(200)  
                             done();
                         });
                     })
             });
         });
+
+});
+
+describe('Wrong Login', () => {
+    /*
+    * Test the User api
+    */
+    describe('/POST user/login', () => {
+        it('it should show Http 400', (done) => {
+            let user = {
+                "email": "akin2@homerunner.com",
+                "password": "dockerize",
+            }
+       
+            chai.request(app)
+                .post('/api/user/login')
+                .send(user)
+                .end((err, res) => {
+                    res.body.should.have.property('msg');
+                    res.should.have.status(400)
+                    done()
+                })
+        });
+    });
+
+    /*
+    * Test the User api
+    */
+        describe('api/user/activity without token', () => {
+            it('Want to take activities without token', (done) => {
+                let user = {
+                    "email": "akin@homerunner.com",
+                    "password": "dockerize",
+                }
+                let token = ''
+                chai.request(app)
+                    .post('/api/user/login')
+                    .send(user)
+                    .end((err, res) => {
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('data');
+                        res.body.should.have.property('code');
+                        res.should.have.status(200)
+                        token = res.body.data
+                        chai.request(app)
+                        .get('/api/user/activity')
+                        //.set("x-access-token", token)
+                        .end((err, res)=> {           
+                            res.should.have.status(403)  
+                            done();
+                        });
+                    })
+            });
+        });
+
 });
