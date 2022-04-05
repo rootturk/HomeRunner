@@ -4,11 +4,11 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('USER', () => {
+describe('New User register', () => {
     /*
-    * Test the /POST route
+    * Test the User api
     */
-    describe('/POST user', () => {
+    describe('Succeeded User Register', () => {
         it('it should POST', (done) => {
             let user = {
                 "username": "robhotturk",
@@ -28,10 +28,10 @@ describe('USER', () => {
     });
 
     /*
-    * Test the /POST route
+    * Test the User api
     */
-    describe('/POST user', () => {
-        it('it should Wrong Input', (done) => {
+    describe('Already User Register Scenerio', () => {
+        it('it should Already Created', (done) => {
             let user = {
                 "name": "AKIN ABDULLAHOGLU",
                 "password": "dockerize",
@@ -49,7 +49,7 @@ describe('USER', () => {
     });
 
     /*
-    * Test the /POST route
+    * Test the User api
     */
     describe('/POST user/login', () => {
         it('it should LOGIN, GET TOKEN', (done) => {
@@ -79,4 +79,36 @@ describe('USER', () => {
                 })
         });
     });
+
+    /*
+    * Test the User api
+    */
+        describe('api/message', () => {
+            it('it should take messages if token is past!', (done) => {
+                let user = {
+                    "email": "akin@akinabdullahoglu.com",
+                    "password": "dockerize",
+                }
+                let token = ''
+                chai.request("http://localhost:4002")
+                    .post('/user/login')
+                    .send(user)
+                    .end((err, res) => {
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('data');
+                        res.body.should.have.property('code');
+                        res.should.have.status(200)
+                        token = res.body.data
+                        console.log(token)
+                        chai.request('http://localhost:4002')
+                        .get('/api/message')
+                        .set("x-access-token", token)
+                        .end((err, res)=> {
+                            console.log(res)
+                            res.should.have.status(200)  
+                            done();
+                        });
+                    })
+            });
+        });
 });

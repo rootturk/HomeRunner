@@ -3,12 +3,15 @@ services:
   mongodb_container:
     image: mongo:latest
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+        - MONGODB_INITSCRIPTS_DIR=/docker-entrypoint-initdb.d
+        - MONGODB_USERNAME=root
+        - MONGODB_PASSWORD=root123
+        - MONGODB_DATABASE=homerunner
     ports:
       - 27017:27017
     volumes:
       - mongodb_data_container:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
     command: ['--auth']
     networks:
       - common

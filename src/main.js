@@ -70,9 +70,11 @@ app.post("/api/user/register", async (req, res) => {
         })
 
         let response = {
-            msg: 'All input is required!',
+            msg: 'Succeeded',
             status: 201,
-            data: newUser
+            data: {
+                id:newUser._id
+            }
         }
 
         res.status(201).json(response)
