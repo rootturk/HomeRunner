@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "be2248fe-1cea-47af-9a48-32af4223f3fe",
+		"name": "HomeRunner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetActivities",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjI0YzM1ZTZlMDQ2NDlkY2JjZWVmNmZlIiwiZW1haWwiOiJha2luQGhvbWVydW5uZXIuY29tIiwidXNlcm5hbWUiOiJob21lcnVuIiwiaWF0IjoxNjQ5MTYyMjA3LCJleHAiOjE2NDkxODAyMDd9.7K1P5OFzs98h6EgOj2rSURajemPL02vKWWV7ZlSVunM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5001/api/user/activity",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"user",
+						"activity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMessages",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjI0YzM1ZTZlMDQ2NDlkY2JjZWVmNmZlIiwiZW1haWwiOiJha2luQGhvbWVydW5uZXIuY29tIiwidXNlcm5hbWUiOiJob21lcnVuIiwiaWF0IjoxNjQ5MTYyMjA3LCJleHAiOjE2NDkxODAyMDd9.7K1P5OFzs98h6EgOj2rSURajemPL02vKWWV7ZlSVunM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5001/api/message",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SendMessage",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjI0YzM1ZTZlMDQ2NDlkY2JjZWVmNmZlIiwiZW1haWwiOiJha2luQGhvbWVydW5uZXIuY29tIiwidXNlcm5hbWUiOiJob21lcnVuIiwiaWF0IjoxNjQ5MTYyMjA3LCJleHAiOjE2NDkxODAyMDd9.7K1P5OFzs98h6EgOj2rSURajemPL02vKWWV7ZlSVunM",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"to\":\"homerunner\",\n    \"message\":\"Merhabalar Nasilsiniz?\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5001/api/message",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BlockUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjI0YjVjOWE3Y2MyMWRmMjIwN2EyNGEwIiwiZW1haWwiOiJha2luQGFraW5hYmR1bGxhaG9nbHUuY29tIiwidXNlcm5hbWUiOiJyb290dHVyayIsImlhdCI6MTY0OTEwNzExOSwiZXhwIjoxNjQ5MTI1MTE5fQ.k7mk081Wl3y5Zf-Hz-o1_DX4BMEr2gEX5qQ4d-YNcLQ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"homerunner\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5001/api/user/block",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"user",
+						"block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"homerunner@homerunner.com\",\n    \"password\":\"dockerize\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5001/api/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"homerunner\",\n    \"name\":\"HomeRunner Test\",\n    \"password\":\"dockerize\",\n    \"email\":\"homerunner@homerunner.com\",\n    \"age\":24\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5001/api/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RemoveBlockUser",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjI0YjVjOWE3Y2MyMWRmMjIwN2EyNGEwIiwiZW1haWwiOiJha2luQGFraW5hYmR1bGxhaG9nbHUuY29tIiwidXNlcm5hbWUiOiJyb290dHVyayIsImlhdCI6MTY0OTEwNzExOSwiZXhwIjoxNjQ5MTI1MTE5fQ.k7mk081Wl3y5Zf-Hz-o1_DX4BMEr2gEX5qQ4d-YNcLQ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"rootturk\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5001/api/user/block",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"user",
+						"block"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
