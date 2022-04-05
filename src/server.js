@@ -175,8 +175,8 @@ app.post("/api/user/block", auth, async (req, res) => {
             res.status(400).json(response);
         }
 
-        const user = await User.findOne({ username: payload.username, blocked_username: username });
-
+        const user = await BlockedUser.findOne({ username: payload.username, blocked_username: username });
+        console.log(user)
         if (user != null) {
             let response = {
                 msg: 'Already this user is blocked!',
@@ -192,7 +192,7 @@ app.post("/api/user/block", auth, async (req, res) => {
         })
 
         await Activity.create({
-            username: user.username,
+            username: payload.username,
             activity_type: activityEnums["BLOCK USER"],
             ip_address: req.ip,
             description: username + " Block Status'}"
@@ -231,7 +231,7 @@ app.delete("/api/user/block", auth, async (req, res) => {
         await BlockedUser.deleteMany({ username: payload.username, blocked_username: username });
 
         await Activity.create({
-            username: user.username,
+            username: payload.username,
             activity_type: activityEnums["REMOVEBLOCKUSER"],
             ip_address: req.ip,
             description: username + " Remove Block Status'}"

@@ -5,7 +5,13 @@
 
 The HomeRunner Messaging API has been created to provide endpoints such as user registration, user login, sending messages, recording activities, viewing activities.
 
-  
+Please create .env file in your src folder.
+
+```sh
+API_PORT = 5001
+MONGO_URI = "mongodb://mongodb_container:27017/homerunner"
+TOKEN_KEY = "a4@$%"
+```
 
 Start the App With System
 
@@ -56,7 +62,143 @@ Response
   
 If you login after you need to 'x-access-token' parameter for authentication methods.
 
+ POST - /api/message 
+ Request
+```sh
+{
+	"to":"rootturk",
+	"message":"Merhaba nasilsiniz?"
+}
+```
 
+ GET - /api/message 
+ Request
+```sh
+{
+ 
+}
+```
+
+ GET - /api/message 
+
+ Response
+ 
+```sh
+{
+    "data": [
+        {
+            "from": "homerunner",
+            "messages": [
+                {
+                    "_id": "624cc06cc28983115ae8d837",
+                    "sender_username": "homerunner",
+                    "receiver_username": "homerunner",
+                    "message": "Merhabalar Nasilsiniz?",
+                    "created": "2022-04-05T22:18:51.964Z",
+                    "__v": 0
+                },
+                {
+                    "_id": "624cc1dcf800e36d0a629e07",
+                    "sender_username": "homerunner",
+                    "receiver_username": "homerunner",
+                    "message": "Merhabalar Nasilsiniz?",
+                    "created": "2022-04-05T22:25:30.337Z",
+                    "__v": 0
+                }
+            ]
+        }
+    ],
+    "msg": "Succeeded.",
+    "status": 200
+}
+```
+
+GET - /api/user/activity
+Response
+```sh
+{
+    "data": [
+        {
+            "_id": "624cc05ec28983115ae8d833",
+            "username": "homerunner",
+            "activity_type": 1,
+            "ip_address": "::ffff:172.21.0.1",
+            "created": "2022-04-05T22:18:51.956Z",
+            "__v": 0
+        },
+        {
+            "_id": "624cc06cc28983115ae8d839",
+            "username": "homerunner",
+            "activity_type": 6,
+            "description": " Send Message to: homerunner",
+            "ip_address": "::ffff:172.21.0.1",
+            "created": "2022-04-05T22:18:51.956Z",
+            "__v": 0
+        },
+        {
+            "_id": "624cc1dcf800e36d0a629e09",
+            "username": "homerunner",
+            "activity_type": 6,
+            "description": " Send Message to: homerunner",
+            "ip_address": "::ffff:172.21.0.1",
+            "created": "2022-04-05T22:25:30.318Z",
+            "__v": 0
+        },
+        {
+            "_id": "624cc1eef800e36d0a629e0d",
+            "username": "homerunner",
+            "activity_type": 6,
+            "description": " Get All Message: ",
+            "ip_address": "::ffff:172.21.0.1",
+            "created": "2022-04-05T22:25:30.318Z",
+            "__v": 0
+        },
+        {
+            "_id": "624cc259f800e36d0a629e11",
+            "username": "homerunner",
+            "activity_type": 6,
+            "description": " Get All Message: ",
+            "ip_address": "::ffff:172.21.0.1",
+            "created": "2022-04-05T22:25:30.318Z",
+            "__v": 0
+        }
+    ],
+    "msg": "Succeeded.",
+    "status": 200
+}
+```
+
+ POST - /api/user/block 
+ Request
+```sh
+{
+    "username":"homerunner"
+}
+```
+
+ Response
+```sh
+{
+    "msg": "Succeeded",
+    "status": 200
+}
+```
+
+ DELETE - /api/user/block 
+ Request
+```sh
+{
+    "username":"homerunner"
+}
+```
+
+ Response
+```sh
+{
+    "msg": "User removed succeeded.",
+    "status": 200
+}
+```
 ## Tech & Methods
 
   
